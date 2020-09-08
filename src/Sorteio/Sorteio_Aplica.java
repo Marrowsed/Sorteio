@@ -1,71 +1,60 @@
 package Sorteio;
 
 import java.util.*;
+import javax.swing.*;
 
 public class Sorteio_Aplica {
 	
+	//Construtor GUI
+	
+	Sorteio_Aplica(){
+		JFrame f;
+		
+		f = new JFrame ();
+		int num, num1;
+		String saida = "";
+		
+		JOptionPane.showMessageDialog(f, "Bem vindo ao sorteio !");
+		num = Integer.parseInt(JOptionPane.showInputDialog(f, "Digite o tamanho da lista: "));
+		
+		Sorteio v = new Sorteio(num);
+		
+		do {
+			num1 = Integer.parseInt(JOptionPane.showInputDialog(f, "1- INSERE\n"
+					+ " 2- REMOVE\n"
+					+ " 3- EXIBIR LISTA\n"
+					+ " 4- SORTEAR\n"
+					+ " 5- FIM\n"));
+			if(num1 == 1 && !v.isFull()) {
+				int temp = Integer.parseInt(JOptionPane.showInputDialog(f, "Digite o número"));
+				v.insert(temp);
+			} else if ( num == 1 && v.isFull()) {
+				JOptionPane.showMessageDialog(f, "Lista Cheia !");
+			}
+			if (num1 == 2 && !v.isEmpty()) {
+				v.remove();
+				JOptionPane.showMessageDialog(f, "Removido");
+			} else if (num1 == 2 && v.isEmpty()) {
+				JOptionPane.showMessageDialog(f, "Lista vazia !");
+			}
+			if(num1 == 3) {
+				for(int i = 0; i <= v.getS(); i++){
+					saida += v.getValue(i);
+                }
+				JOptionPane.showMessageDialog(f, saida + ", ");
+			} else if (num1 == 4) {
+				JOptionPane.showMessageDialog(f, "O número sorteado é: ");
+				v.sort();
+			}
+	    }while(num1 != 5);
+	    
+		
+	}
+	
 	public static void main (String args []) {
 		
-		Scanner read = new Scanner (System.in);
-		
-		int opt, size, value;
-		
-		System.out.println("Bem vindo ao sorteio !");
-		System.out.print("Digite o tamanho da lista: ");
-	    size = read.nextInt();
-	    
-	    Sorteio v = new Sorteio(size);
-	    
-	    do {
-	        System.out.println("1-INSERE");
-	        System.out.println("2-REMOVE");
-	        System.out.println("3-EXIBIR LISTA");
-	        System.out.println("4-SORTEAR");
-	        System.out.println("5-FIM");
-	        System.out.print("Digite o número: ");
-	        opt = read.nextInt();
-	        switch(opt){
-	            case 1:
-	                if(!v.isFull()){
-	                System.out.print("Insira o valor: ");
-	                value = read.nextInt();
-	                v.insert(value);
-	                    System.out.println("Inserido com sucesso !");
-	                } else {
-	                    System.out.println("Lista cheia !");
-	                }
-	                break;
-	            case 2:
-	                if(!v.isEmpty()) {
-	                    v.remove();
-	                    System.out.println("Item removido !");
-	                } else {
-	                    System.out.println("Lista vazia !");
-	                }
-	                break;
-	            case 3:
-	                if(v.isEmpty()){
-	                    System.out.println("Lista vazia !");
-	                }else {
-	                    for(int i = 0; i <= v.getS(); i++){
-	                        System.out.println(v.getValue(i));
-	                    }
-	                }
-	                break;
-	            case 4:
-	            	if (v.isEmpty()) {
-	            		System.out.println("Lista Vazia !");
-	            	} else if (!v.isFull()) {
-	            		System.out.println("Preencha a lista !");
-	            	} else
-	            		v.sort();
-	            case 5:
-	                break;
-	            default:
-	                System.out.println("Opção inválida !");
-	        }
-	    }while(opt != 5);
-	    
+		new Sorteio_Aplica();
+	     
 	    }
 		
 	}
