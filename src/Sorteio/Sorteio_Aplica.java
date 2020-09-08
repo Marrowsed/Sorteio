@@ -28,27 +28,19 @@ public class Sorteio_Aplica {
 			if(num1 == 1 && !v.isFull()) {
 				int temp = Integer.parseInt(JOptionPane.showInputDialog(f, "Digite o número"));
 				v.insert(temp);
-			} else if ( num == 1 && v.isFull()) {
-				JOptionPane.showMessageDialog(f, "Lista Cheia !");
-			}
-			if (num1 == 2 && !v.isEmpty()) {
+			} else if (num1 == 2 && !v.isEmpty()) {
 				v.remove();
 				JOptionPane.showMessageDialog(f, "Removido");
-			} else if (num1 == 2 && v.isEmpty()) {
-				JOptionPane.showMessageDialog(f, "Lista vazia !");
-			}
-			if(num1 == 3) {
+			} else if(num1 == 3) {
 				for(int i = 0; i <= v.getS(); i++){
 					saida += v.getValue(i);
                 }
-				JOptionPane.showMessageDialog(f, saida + ", ");
+				JOptionPane.showMessageDialog(null, saida, "Números\n", JOptionPane.INFORMATION_MESSAGE);
 			} else if (num1 == 4) {
 				JOptionPane.showMessageDialog(f, "O número sorteado é: ");
 				v.sort();
 			}
-	    }while(num1 != 5);
-	    
-		
+	    }while(num1 != 5);		
 	}
 	
 	public static void main (String args []) {
